@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -22,7 +23,7 @@ class PostFactory extends Factory
 
         return [
             'category_id' => Category::factory(),
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => User::factory(),
             'title' => $this->faker->sentence(),
             'slug' => Str::slug($title),
             // TODO: add library to get url thumbnails

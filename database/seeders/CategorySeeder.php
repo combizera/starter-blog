@@ -1,24 +1,14 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Seeders;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Category;
+use Illuminate\Database\Seeder;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
- */
-class CategoryFactory extends Factory
+class CategorySeeder extends Seeder
 {
-    /**
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    public function run(): void
     {
-        $name = $this->faker->unique()->word();
-
-        return [
-            'name' => $name,
-            'slug' => \Str::slug($name),
-        ];
+        Category::factory()->count(5)->create();
     }
 }
