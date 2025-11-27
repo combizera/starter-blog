@@ -1,7 +1,7 @@
 <?php
 
-use app\Models\User;
-use app\Models\Category;
+    use App\Models\Category;
+    use app\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
