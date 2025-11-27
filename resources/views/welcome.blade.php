@@ -3,7 +3,7 @@
     Blog Starter Kit
   </h1>
 
-  <a href="{{ route('blog.categories.index') }}">
+  <a href="{{ route('categories.index') }}">
     Editar Categorias
   </a>
 </x-layout>
