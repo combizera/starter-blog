@@ -1,43 +1,82 @@
 <x-layout>
-  <h1>
-    Categorias
-  </h1>
-
+  {{-- TODO: add a Alert component for success messages --}}
   @session('success')
     <div class="bg-green-200 text-green-800 p-4 mb-4 rounded">
       {{ session('success') }}
     </div>
   @endsession
+  <h1>
+    Categories
+  </h1>
 
-  <form action="{{ route('categories.store') }}" method="POST" class="grid grid-cols-2 gap-4">
-    @csrf
+  <div>
+    <h2>
+      List Categories
+    </h2>
 
-    <div class="flex">
-      <label for="name">
-        Nome
-      </label>
-      <input class="border-white border-2" type="text" id="name" name="name" placeholder="Category Name" required>
-      @error('name')
-        <div class="text-red-600 mt-1">
-          {{ $message }}
-        </div>
-      @enderror
-    </div>
+    <ul class="flex flex-col gap-4">
+      @forelse ($categories as $category)
+        <li>
+          - {{ $category->name }} ({{ $category->slug }})
 
-    <div>
-      <label for="slug">
-        Slug
-      </label>
-      <input class="border-white border-2" type="text" id="slug" name="slug" required>
-      @error('slug')
-        <div class="text-red-600 mt-1">
-          {{ $message }}
-        </div>
-      @enderror
-    </div>
+          <a class="bg-white inline-block rounded p-1" href="{{ route('categories.edit', $category->id) }}">
+            <x-icons.edit />
+          </a>
 
-    <button class="border-white border-2 hover:cursor-pointer p-2" type="submit">
-      Adicionar Categoria
-    </button>
-  </form>
+          <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="bg-red-500 inline-block rounded p-1 hover:cursor-pointer">
+            @csrf
+            @method('DELETE')
+
+            <button type="submit">
+              <x-icons.destroy />
+            </button>
+          </form>
+        </li>
+      @empty
+        <li>
+          No categories found.
+        </li>
+      @endforelse
+    </ul>
+  </div>
+
+  <hr class="my-4 opacity-25">
+
+  <div>
+    <h2>
+      Create New Category
+    </h2>
+
+    <form action="{{ route('categories.store') }}" method="POST" class="grid grid-cols-2 gap-4">
+      @csrf
+
+      <div class="flex">
+        <label for="name">
+          Name
+        </label>
+        <input class="border-white border-2" type="text" id="name" name="name" placeholder="Category Name" required>
+        @error('name')
+          <div class="text-red-600 mt-1">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+
+      <div>
+        <label for="slug">
+          Slug
+        </label>
+        <input class="border-white border-2" type="text" id="slug" name="slug" required>
+        @error('slug')
+          <div class="text-red-600 mt-1">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+
+      <button class="border-white border-2 hover:cursor-pointer p-2" type="submit">
+        Create Category
+      </button>
+    </form>
+  </div>
 </x-layout>
