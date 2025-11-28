@@ -15,7 +15,7 @@
         <x-button class="w-full flex justify-start !text-zinc-400" zinc flat icon="tag" lg outline label="Categories" href="{{ route('categories.index') }}"/>
       </li>
       <li>
-        <x-button class="w-full flex justify-start !text-zinc-400" zinc flat icon="document-plus" lg outline label="Posts" href="{{ route('categories.index') }}"/>
+        <x-button class="w-full flex justify-start !text-zinc-400" zinc flat icon="document-plus" lg outline label="Posts" href="{{ route('posts.index') }}"/>
       </li>
     </ul>
   </div>

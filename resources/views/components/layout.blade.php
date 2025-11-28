@@ -20,12 +20,12 @@
 <body class="bg-zinc-800 text-white min-h-screen flex flex-col">
 
   {{-- MAIN --}}
-  <main class="flex-1 flex flex-col md:flex-row  w-full">
+  <main class="flex-1 flex flex-col md:flex-row w-full max-w-full">
     {{-- ASIDE --}}
     <x-aside />
 
     {{-- CONTENT --}}
-    <div class="flex-1 p-4 md:p-6">
+    <div class="flex-1 p-4 md:p-6 max-w-[100%] overflow-x-hidden">
       {{ $slot }}
     </div>
   </main>
