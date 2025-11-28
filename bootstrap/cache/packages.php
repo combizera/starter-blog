@@ -59,4 +59,21 @@
       0 => 'Pest\\Laravel\\PestServiceProvider',
     ),
   ),
+  'wireui/heroicons' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'WireUi\\Heroicons\\HeroiconsServiceProvider',
+    ),
+  ),
+  'wireui/wireui' => 
+  array (
+    'aliases' => 
+    array (
+    ),
+    'providers' => 
+    array (
+      0 => 'WireUi\\ServiceProvider',
+    ),
+  ),
 );

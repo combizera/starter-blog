@@ -1,9 +1,7 @@
 <x-layout>
   {{-- TODO: add a Alert component for success messages --}}
   @session('success')
-    <div class="bg-green-200 text-green-800 p-4 mb-4 rounded">
-      {{ session('success') }}
-    </div>
+    <x-alert title="{{ session('success') }}" />
   @endsession
   <h1>
     Categories
