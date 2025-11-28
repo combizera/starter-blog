@@ -18,6 +18,7 @@ class Post extends Model
         'slug',
         'thumbnail',
         'content',
+        // TODO: adicionar um is_published
     ];
 
     public function category(): BelongsTo
