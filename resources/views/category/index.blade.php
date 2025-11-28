@@ -3,15 +3,23 @@
   @session('success')
     <x-alert title="{{ session('success') }}" />
   @endsession
-  <h1>
+  <h1 class="text-xl font-semibold mb-4 text-zinc-300 border-b border-zinc-700 pb-4">
     Categories
   </h1>
 
-  <div>
-    <h2>
-      List Categories
-    </h2>
+  <nav>
+    <ul class="flex gap-4 mb-4">
+      <li>
+        <x-link label="All Categories" zinc underline="always" href="{{ route('categories.index') }}" />
+      </li>
+      <li>
+        <x-link label="New" zinc underline="hover" href="{{ route('categories.index') }}" />
+      </li>
+    </ul>
+  </nav>
 
+  <div>
+    Table
     <ul class="flex flex-col gap-4">
       @forelse ($categories as $category)
         <li>
