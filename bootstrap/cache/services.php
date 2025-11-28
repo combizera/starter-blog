@@ -32,9 +32,10 @@
     28 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     29 => 'Termwind\\Laravel\\TermwindServiceProvider',
     30 => 'Pest\\Laravel\\PestServiceProvider',
-    31 => 'WireUi\\Heroicons\\HeroiconsServiceProvider',
-    32 => 'WireUi\\ServiceProvider',
-    33 => 'app\\Providers\\AppServiceProvider',
+    31 => 'PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider',
+    32 => 'WireUi\\Heroicons\\HeroiconsServiceProvider',
+    33 => 'WireUi\\ServiceProvider',
+    34 => 'app\\Providers\\AppServiceProvider',
   ),
   'eager' => 
   array (
@@ -54,9 +55,10 @@
     13 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     14 => 'Termwind\\Laravel\\TermwindServiceProvider',
     15 => 'Pest\\Laravel\\PestServiceProvider',
-    16 => 'WireUi\\Heroicons\\HeroiconsServiceProvider',
-    17 => 'WireUi\\ServiceProvider',
-    18 => 'app\\Providers\\AppServiceProvider',
+    16 => 'PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider',
+    17 => 'WireUi\\Heroicons\\HeroiconsServiceProvider',
+    18 => 'WireUi\\ServiceProvider',
+    19 => 'app\\Providers\\AppServiceProvider',
   ),
   'deferred' => 
   array (

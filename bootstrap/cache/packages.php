@@ -59,6 +59,13 @@
       0 => 'Pest\\Laravel\\PestServiceProvider',
     ),
   ),
+  'power-components/livewire-powergrid' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider',
+    ),
+  ),
   'wireui/heroicons' => 
   array (
     'providers' => 
