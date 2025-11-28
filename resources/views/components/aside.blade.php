@@ -8,14 +8,14 @@
     </a>
 
     <ul class="border-t border-zinc-700 pt-4 space-y-1">
-      <h2 class="text-sm font-semibold mb-2 text-zinc-400">
+      <h2 class="text-sm font-semibold mb-2 text-zinc-300">
         Navigation
       </h2>
       <li>
-        <x-button class="w-full flex justify-start" zinc flat icon="tag" lg outline label="Categories" href="{{ route('categories.index') }}"/>
+        <x-button class="w-full flex justify-start !text-zinc-400" zinc flat icon="tag" lg outline label="Categories" href="{{ route('categories.index') }}"/>
       </li>
       <li>
-        <x-button class="w-full flex justify-start" zinc flat icon="document-plus" lg outline label="Posts" href="{{ route('categories.index') }}"/>
+        <x-button class="w-full flex justify-start !text-zinc-400" zinc flat icon="document-plus" lg outline label="Posts" href="{{ route('categories.index') }}"/>
       </li>
     </ul>
   </div>
