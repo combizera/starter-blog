@@ -13,6 +13,9 @@
   {{-- TODO: add seo tags --}}
 
   @vite('resources/css/app.css')
+
+  <wireui:scripts />
+  <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 
 <body class="bg-gray-800 text-white">
