@@ -1,7 +1,14 @@
 @props([
-  'title' => config('app.name'),
+    'title' => null,
+    'resume' => null,
+    'image' => null,
 ])
-  <!doctype html>
+
+@php
+  $title = !empty($title) ? trim($title) : config('app.name');
+@endphp
+
+<!doctype html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
@@ -16,6 +23,15 @@
 
   <wireui:scripts />
   <script src="//unpkg.com/alpinejs" defer></script>
+
+  {{-- SEO [Title/Description/Favicon/Canonical] --}}
+  <x-seo :$title :$resume />
+
+  {{-- OG Meta Tags --}}
+   <x-seo.og-tags :$title :$resume :$image />
+
+  {{-- Twitter Meta Tags --}}
+   <x-seo.twitter-tags :$title :$resume />
 </head>
 <body class="bg-zinc-800 text-white min-h-screen flex flex-col">
 
