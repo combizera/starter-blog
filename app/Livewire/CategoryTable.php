@@ -36,6 +36,7 @@ final class CategoryTable extends PowerGridComponent
 
     public function relationSearch(): array
     {
+        // TODO: Implementar contagem de postagens
         return [];
     }
 
@@ -45,7 +46,8 @@ final class CategoryTable extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('slug')
-            ->add('created_at');
+            ->add('created_at')
+            ->add('created_at_formatted', fn($category) => Carbon::parse($category->created_at)->format('d/m/Y'));
     }
 
     public function columns(): array
@@ -61,36 +63,36 @@ final class CategoryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at')
+            Column::make('Created at', 'created_at_formatted')
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+            // TODO: ativar quando tiver funcionando
+            //Column::action('Action')
         ];
     }
 
     public function filters(): array
     {
-        return [
-        ];
+        return [];
     }
 
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->redirect(route('categories.edit', $rowId));
     }
 
-    public function actions(Category $row): array
-    {
-        return [
-            Button::add('edit')
-                ->slot('Edit: ' . $row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
-        ];
-    }
+    //public function actions(Category $row): array
+    //{
+    //    return [
+    //        Button::add('edit')
+    //            ->slot('Edit: ' . $row->id)
+    //            ->id()
+    //            ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
+    //            ->dispatch('edit', ['rowId' => $row->id])
+    //    ];
+    //}
 
     /*
     public function actionRules($row): array

@@ -37,7 +37,7 @@
       @enderror
     </div>
     <div class="col-span-2">
-      <x-button class="w-full font-bold" outline zinc lg flat right-icon="plus" type="submit">
+      <x-button class="w-full font-bold !text-zinc-400 !border-zinc-400" outline zinc lg flat right-icon="plus" type="submit">
         Create Category
       </x-button>
     </div>
