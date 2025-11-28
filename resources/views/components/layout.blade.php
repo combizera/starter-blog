@@ -1,7 +1,7 @@
 @props([
   'title' => config('app.name'),
 ])
-<!doctype html>
+  <!doctype html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
@@ -17,14 +17,19 @@
   <wireui:scripts />
   <script src="//unpkg.com/alpinejs" defer></script>
 </head>
+<body class="bg-zinc-800 text-white min-h-screen flex flex-col">
 
-<body class="bg-gray-800 text-white">
-  {{-- HEADER --}}
-  <x-header />
+  {{-- MAIN --}}
+  <main class="flex-1 flex flex-col md:flex-row max-w-7xl w-full">
+    {{-- ASIDE --}}
+    <aside class="bg-zinc-900 md:w-64 md:min-h-full">
+      <x-aside />
+    </aside>
 
-  {{ $slot }}
-
-  {{-- FOOTER --}}
-  <x-footer />
+    {{-- CONTENT --}}
+    <div class="flex-1 p-4 md:p-6">
+      {{ $slot }}
+    </div>
+  </main>
 </body>
 </html>
