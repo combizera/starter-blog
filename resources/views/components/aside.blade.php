@@ -12,10 +12,10 @@
         Navigation
       </h2>
       <li>
-        <x-button class="w-full flex justify-start !text-zinc-400" zinc flat icon="tag" lg outline label="Categories" href="{{ route('categories.index') }}"/>
+        <x-button class="w-full flex justify-start !text-zinc-400 {{ Route::is('categories.*') ? 'bg-zinc-800' : '' }}" zinc flat icon="tag" lg outline label="Categories" href="{{ route('categories.index') }}"/>
       </li>
       <li>
-        <x-button class="w-full flex justify-start !text-zinc-400" zinc flat icon="document-plus" lg outline label="Posts" href="{{ route('posts.index') }}"/>
+        <x-button class="w-full flex justify-start !text-zinc-400 {{ Route::is('posts.*') ? 'bg-zinc-800' : '' }}" zinc flat icon="document-plus" lg outline label="Posts" href="{{ route('posts.index') }}"/>
       </li>
     </ul>
   </div>
