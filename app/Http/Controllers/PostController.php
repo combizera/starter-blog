@@ -31,16 +31,14 @@ class PostController extends Controller
             ->map(fn($category) => [
                 'label' => $category->name,
                 'value' => $category->id
-            ])
-            ->toArray();
+            ]);
 
         $users = User::query()
             ->get()
             ->map(fn($user) => [
                 'label' => $user->name,
                 'value' => $user->id
-            ])
-            ->toArray();
+            ]);
 
         return view('post.create', compact('categories', 'users'));
     }
@@ -62,7 +60,21 @@ class PostController extends Controller
      */
     public function edit(Post $post): View
     {
-        return view('post.edit', compact('post'));
+        $categories = Category::query()
+            ->get()
+            ->map(fn($category) => [
+                'label' => $category->name,
+                'value' => $category->id
+            ]);
+
+        $users = User::query()
+            ->get()
+            ->map(fn($user) => [
+                'label' => $user->name,
+                'value' => $user->id
+            ]);
+
+        return view('post.edit', compact('post', 'categories', 'users'));
     }
 
     /**

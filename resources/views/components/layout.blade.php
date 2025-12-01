@@ -19,6 +19,8 @@
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+  @livewireScripts
+
   <wireui:scripts />
 
   {{-- SEO [Title/Description/Favicon/Canonical] --}}
