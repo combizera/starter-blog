@@ -40,7 +40,7 @@
     <x-header />
 
     {{-- CONTENT --}}
-    <div class="flex-1 p-4 md:p-6 max-w-[100%] overflow-x-hidden">
+    <div class="max-w-7xl mx-auto p-4">
       {{ $slot }}
     </div>
 
