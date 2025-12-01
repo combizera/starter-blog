@@ -6,14 +6,15 @@ use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $posts = Post::all();
 
@@ -23,10 +24,23 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        $categories = Category::query()->pluck('name', 'id');
-        $users = User::query()->pluck('name', 'id');
+        $categories = Category::query()
+            ->get()
+            ->map(fn($category) => [
+                'label' => $category->name,
+                'value' => $category->id
+            ])
+            ->toArray();
+
+        $users = User::query()
+            ->get()
+            ->map(fn($user) => [
+                'label' => $user->name,
+                'value' => $user->id
+            ])
+            ->toArray();
 
         return view('post.create', compact('categories', 'users'));
     }
@@ -34,14 +48,8 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PostRequest $request)
+    public function store(PostRequest $request): RedirectResponse
     {
-        dd([
-            'all' => $request->all(),
-            'validated' => $request->validated(),
-            'category_id' => $request->category_id,
-            'user_id' => $request->user_id,
-        ]);
         Post::query()->create($request->validated());
 
         return redirect()
@@ -52,16 +60,15 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Post $post): View
     {
         return view('post.edit', compact('post'));
-
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostRequest $request, Post $post)
+    public function update(PostRequest $request, Post $post): RedirectResponse
     {
         $post->update($request->validated());
 
@@ -73,7 +80,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): RedirectResponse
     {
         $post->delete();
 
