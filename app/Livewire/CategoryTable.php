@@ -79,6 +79,20 @@ final class CategoryTable extends PowerGridComponent
         $this->redirect(route('categories.edit', $rowId));
     }
 
+    #[\Livewire\Attributes\On('delete')]
+    public function delete($rowId): void
+    {
+        $category = Category::find($rowId);
+
+        if ($category) {
+            $category->delete();
+
+            $this->dispatch('pg:eventRefresh-categoryTable');
+
+            session()->flash('success', 'Category deleted successfully!');
+        }
+    }
+
     public function actions(Category $row): array
     {
         return [
@@ -86,7 +100,14 @@ final class CategoryTable extends PowerGridComponent
                 ->slot('Edit')
                 ->id()
                 ->class('bg-zinc-500 text-white px-3 py-1 rounded text-sm font-medium hover:bg-zinc-600 transition hover:cursor-pointer')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->dispatch('edit', ['rowId' => $row->id]),
+
+              Button::add('delete')
+                  ->slot('Delete')
+                  ->id()
+                  ->class('bg-red-500 text-white px-3 py-1 rounded text-sm font-medium hover:bg-red-600 transition hover:cursor-pointer')
+                  ->dispatch('delete', ['rowId' => $row->id])
+                  ->confirm('Are you sure you want to delete this category?')
         ];
     }
 }
