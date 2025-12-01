@@ -6,9 +6,7 @@
   </div>
 
   {{-- TITLE --}}
-  <x-title>
-    Categories
-  </x-title>
+  <x-title title="All Categories" />
 
   {{-- NAVIGATION --}}
   <x-nav.categories />

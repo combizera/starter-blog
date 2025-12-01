@@ -18,5 +18,15 @@
         class="{{ Route::is('categories.create') ? '!text-zinc-400' : '!text-zinc-500'}}"
       />
     </li>
+    @if(Route::is('categories.edit'))
+      <li>
+        <x-link
+          zinc
+          label="Editing"
+          underline="always"
+          class="!text-zinc-400"
+        />
+      </li>
+    @endif
   </ul>
 </nav>

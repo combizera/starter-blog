@@ -1,18 +1,28 @@
 <x-layout>
-  <h1>
-    Edit - {{ $category->name }}
-  </h1>
+  {{-- TITLE --}}
+  <x-title title="Edit Category"/>
 
-  <div>
-    <form action="{{ route('categories.update', $category->id) }}" method="POST" class="grid grid-cols-2 gap-4">
-      @csrf
-      @method('PUT')
+  {{-- NAVIGATION --}}
+  <x-nav.categories />
 
+  {{-- FORM --}}
+  <form
+    action="{{ route('categories.update', $category->id) }}"
+    method="POST"
+  >
+    @csrf
+    @method('PUT')
+
+    <x-section title="Category - {{ $category->name }}" icon="document-text">
       <div class="flex">
-        <label for="name">
-          Name
-        </label>
-        <input value="{{ $category->name }}" class="border-white border-2" type="text" id="name" name="name" placeholder="Category Name" required>
+        <x-input
+          label="Name"
+          placeholder="Category Name"
+          name="name"
+          value="{{ $category->name }}"
+          required
+        />
+
         @error('name')
           <div class="text-red-600 mt-1">
             {{ $message }}
@@ -21,10 +31,14 @@
       </div>
 
       <div>
-        <label for="slug">
-          Slug
-        </label>
-        <input value="{{ $category->slug }}" class="border-white border-2" type="text" id="slug" name="slug" required>
+        <x-input
+          label="Slug"
+          placeholder="category-slug"
+          name="slug"
+          value="{{ $category->slug }}"
+          required
+        />
+
         @error('slug')
           <div class="text-red-600 mt-1">
             {{ $message }}
@@ -32,9 +46,9 @@
         @enderror
       </div>
 
-      <button class="border-white border-2 hover:cursor-pointer p-2" type="submit">
+      <x-button class="col-span-2 w-full font-bold !text-zinc-400 !border-zinc-400" outline zinc lg flat type="submit">
         Update Category
-      </button>
-    </form>
-  </div>
+      </x-button>
+    </x-section>
+  </form>
 </x-layout>

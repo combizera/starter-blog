@@ -6,15 +6,11 @@
   </div>
 
   {{-- TITLE --}}
-  <x-title>
-    Create New Post
-  </x-title>
+  <x-title title="All Posts" />
 
   {{-- NAVIGATION --}}
   <x-nav.posts />
 
   {{-- TABLE --}}
-  <div class="dark ">
-    <livewire:post-table/>
-  </div>
+  <livewire:post-table/>
 </x-layout>
