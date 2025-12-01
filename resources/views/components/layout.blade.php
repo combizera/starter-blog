@@ -35,14 +35,17 @@
 <body class="bg-zinc-800 text-white min-h-screen flex flex-col dark">
 
   {{-- MAIN --}}
-  <main class="flex-1 flex flex-col md:flex-row w-full max-w-full">
-    {{-- ASIDE --}}
-    <x-aside />
+  <main class="">
+    {{-- HEADER --}}
+    <x-header />
 
     {{-- CONTENT --}}
     <div class="flex-1 p-4 md:p-6 max-w-[100%] overflow-x-hidden">
       {{ $slot }}
     </div>
+
+    {{-- FOOTER --}}
+    <x-footer />
   </main>
 </body>
 </html>
