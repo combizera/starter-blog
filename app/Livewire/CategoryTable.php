@@ -7,7 +7,6 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
@@ -18,11 +17,10 @@ final class CategoryTable extends PowerGridComponent
 
     public function setUp(): array
     {
-        // $this->showCheckBox();
-
         return [
             PowerGrid::header()
                 ->showSearchInput(),
+
             PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -36,7 +34,6 @@ final class CategoryTable extends PowerGridComponent
 
     public function relationSearch(): array
     {
-        // TODO: Implementar contagem de postagens
         return [];
     }
 
@@ -67,8 +64,7 @@ final class CategoryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            // TODO: ativar quando tiver funcionando
-            //Column::action('Action')
+            Column::action('Action')
         ];
     }
 
@@ -83,26 +79,14 @@ final class CategoryTable extends PowerGridComponent
         $this->redirect(route('categories.edit', $rowId));
     }
 
-    //public function actions(Category $row): array
-    //{
-    //    return [
-    //        Button::add('edit')
-    //            ->slot('Edit: ' . $row->id)
-    //            ->id()
-    //            ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-    //            ->dispatch('edit', ['rowId' => $row->id])
-    //    ];
-    //}
-
-    /*
-    public function actionRules($row): array
+    public function actions(Category $row): array
     {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
+        return [
+            Button::add('edit')
+                ->slot('Edit')
+                ->id()
+                ->class('bg-zinc-500 text-white px-3 py-1 rounded text-sm font-medium hover:bg-zinc-600 transition hover:cursor-pointer')
+                ->dispatch('edit', ['rowId' => $row->id])
         ];
     }
-    */
 }

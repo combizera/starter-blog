@@ -17,10 +17,9 @@
     {{ $title }} -  {{ config('app.name') }}
   </title>
 
-  @vite('resources/css/app.css')
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 
   <wireui:scripts />
-  <script src="//unpkg.com/alpinejs" defer></script>
 
   {{-- SEO [Title/Description/Favicon/Canonical] --}}
   <x-seo :$title :$resume />
