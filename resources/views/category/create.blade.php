@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-admin title="Create New Category">
 
   {{-- TITLE --}}
   <x-title title="Create New Category" />
@@ -15,4 +15,4 @@
 
     <livewire:form-category />
   </form>
-</x-layout>
+</x-layout-admin>

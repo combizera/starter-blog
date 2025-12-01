@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-admin title="Edit Category">
   {{-- TITLE --}}
   <x-title title="Edit Category"/>
 
@@ -51,4 +51,4 @@
       </x-button>
     </x-section>
   </form>
-</x-layout>
+</x-layout-admin>

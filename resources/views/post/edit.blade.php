@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-admin title="Edit Post">
   {{-- TITLE --}}
   <x-title title="Edit Post" />
 
@@ -16,4 +16,4 @@
       <livewire:form-post :$post :$categories :$users />
     </form>
   </div>
-</x-layout>
+</x-layout-admin>

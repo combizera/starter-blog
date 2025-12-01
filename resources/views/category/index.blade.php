@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-admin title="Categories">
   <div class="absolute top-10 right-10 min-w-[300px] z-10 space-y-2">
     @session('success')
       <x-alert title="{{ session('success') }}" />
@@ -13,4 +13,4 @@
 
   {{-- TABLE --}}
   <livewire:category-table />
-</x-layout>
+</x-layout-admin>
