@@ -1,14 +1,19 @@
 <x-layout>
-  {{-- TODO: add a Alert component for success messages --}}
-  @session('success')
-    <x-alert title="{{ session('success') }}" />
-  @endsession
-  <h1 class="text-xl font-semibold mb-4 text-zinc-300 border-b border-zinc-700 pb-4">
-    Posts
-  </h1>
+  <div class="absolute top-10 right-10 min-w-[300px] z-10 space-y-4">
+    @session('success')
+      <x-alert title="{{ session('success') }}" />
+    @endsession
+  </div>
 
+  {{-- TITLE --}}
+  <x-title>
+    Create New Post
+  </x-title>
+
+  {{-- NAVIGATION --}}
   <x-nav.posts />
 
+  {{-- TABLE --}}
   <div class="dark ">
     <livewire:post-table/>
   </div>

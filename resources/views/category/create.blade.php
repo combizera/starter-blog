@@ -1,11 +1,14 @@
 <x-layout>
 
-  <h1 class="text-xl font-semibold mb-4 text-zinc-300 border-b border-zinc-700 pb-4">
+  {{-- TITLE --}}
+  <x-title>
     Create New Category
-  </h1>
+  </x-title>
 
+  {{-- NAVIGATION --}}
   <x-nav.categories />
 
+  {{-- FORM --}}
   <form action="{{ route('categories.store') }}" method="POST" class="grid grid-cols-2 gap-4">
     @csrf
 

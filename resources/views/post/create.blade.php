@@ -1,8 +1,8 @@
 <x-layout>
 
-  <h1 class="text-xl font-semibold mb-4 text-zinc-300 border-b border-zinc-700 pb-4">
+  <x-title>
     Create New Post
-  </h1>
+  </x-title>
 
   <x-nav.posts />
 
@@ -19,6 +19,7 @@
           label="Title"
           placeholder="Post Title"
           name="title"
+          value="{{ $title ?? old('title') }}"
           required
         />
         @error('title')
@@ -33,6 +34,7 @@
           label="Slug"
           placeholder="post-slug"
           name="slug"
+          value="{{ $slug ?? old('slug') }}"
           required
         />
         @error('slug')
@@ -47,6 +49,8 @@
           label="Content"
           placeholder="Your post content here..."
           name="content"
+          value="{{ $content ?? old('content') }}"
+          rows="10"
           required
         />
         @error('content')
@@ -58,12 +62,13 @@
 
       <x-section title="Identification" icon="identification" class="dark col-span-2">
         <div>
-          @dd($categories, $users)
           <x-select
             name="category_id"
             label="Select Category"
             placeholder="Select category"
             :options="$categories"
+            option-label="label"
+            option-value="value"
           />
           @error('category_id')
             <div class="text-red-600 mt-1">
@@ -78,8 +83,10 @@
             label="Select Author"
             placeholder="Select author"
             :options="$users"
+            option-label="label"
+            option-value="value"
           />
-          @error('category_id')
+          @error('user_id')
           <div class="text-red-600 mt-1">
             {{ $message }}
           </div>

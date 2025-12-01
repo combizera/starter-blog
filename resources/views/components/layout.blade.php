@@ -17,8 +17,6 @@
     {{ $title }} -  {{ config('app.name') }}
   </title>
 
-  {{-- TODO: add seo tags --}}
-
   @vite('resources/css/app.css')
 
   <wireui:scripts />
@@ -33,7 +31,7 @@
   {{-- Twitter Meta Tags --}}
    <x-seo.twitter-tags :$title :$resume />
 </head>
-<body class="bg-zinc-800 text-white min-h-screen flex flex-col">
+<body class="bg-zinc-800 text-white min-h-screen flex flex-col dark">
 
   {{-- MAIN --}}
   <main class="flex-1 flex flex-col md:flex-row w-full max-w-full">
