@@ -53,10 +53,8 @@ final class PostTable extends PowerGridComponent
             ->add('user_name', fn($post) => $post->user->name ?? 'N/A')
             ->add('title_preview', fn($post) => Str::limit($post->title, 20, '...'))
             ->add('title')
-            ->add('slug')
-            ->add('thumbnail')
             ->add('content')
-            ->add('content_preview', fn($post) => Str::limit($post->content, 20, '...'))
+            ->add('content_preview', fn($post) => Str::limit($post->content, 50, '...'))
             ->add('created_at')
             ->add('created_at_formatted', fn($post) => Carbon::parse($post->created_at)->format('d/m/Y'));
     }
@@ -76,14 +74,6 @@ final class PostTable extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Title', 'title_preview', 'title')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Slug', 'slug')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Thumbnail', 'thumbnail')
                 ->sortable()
                 ->searchable(),
 
@@ -124,6 +114,7 @@ final class PostTable extends PowerGridComponent
 
     public function actions(Post $row): array
     {
+        // TODO: Criar action p/ ir p/ postagem
         return [
             Button::add('edit')
                 ->slot('Edit')

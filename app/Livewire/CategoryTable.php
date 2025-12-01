@@ -29,7 +29,8 @@ final class CategoryTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Category::query();
+        return Category::query()
+            ->withCount('posts');
     }
 
     public function relationSearch(): array
@@ -43,6 +44,7 @@ final class CategoryTable extends PowerGridComponent
             ->add('id')
             ->add('name')
             ->add('slug')
+            ->add('posts_count')
             ->add('created_at')
             ->add('created_at_formatted', fn($category) => Carbon::parse($category->created_at)->format('d/m/Y'));
     }
@@ -52,6 +54,9 @@ final class CategoryTable extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
 
+            Column::make('Posts', 'posts_count')
+                ->sortable(),
+
             Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
@@ -60,9 +65,8 @@ final class CategoryTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at_formatted')
-                ->sortable()
-                ->searchable(),
+            Column::make('Created at', 'created_at_formatted', 'created_at')
+                ->sortable(),
 
             Column::action('Action')
         ];
@@ -85,6 +89,12 @@ final class CategoryTable extends PowerGridComponent
         $category = Category::find($rowId);
 
         if ($category) {
+            if ($category->posts()->count() > 0) {
+                session()->flash('error', 'Cannot delete category with posts!');
+                $this->dispatch('pg:eventRefresh-categoryTable');
+                return;
+            }
+
             $category->delete();
 
             $this->dispatch('pg:eventRefresh-categoryTable');
@@ -95,6 +105,8 @@ final class CategoryTable extends PowerGridComponent
 
     public function actions(Category $row): array
     {
+        // TODO: Criar action p/ ir p/ category
+
         return [
             Button::add('edit')
                 ->slot('Edit')
