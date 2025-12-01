@@ -86,20 +86,32 @@ final class CategoryTable extends PowerGridComponent
     #[\Livewire\Attributes\On('delete')]
     public function delete($rowId): void
     {
-        $category = Category::find($rowId);
+        try {
+            $category = Category::findOrFail($rowId);
 
-        if ($category) {
-            if ($category->posts()->count() > 0) {
-                session()->flash('error', 'Cannot delete category with posts!');
-                $this->dispatch('pg:eventRefresh-categoryTable');
+            if ($category->posts_count > 0) {
+                $this->dispatch('showAlert', [
+                    'type' => 'error',
+                    'message' => "Cannot delete '{$category->name}'! It has {$category->posts_count} post(s) associated."
+                ]);
                 return;
             }
 
+            $categoryName = $category->name;
             $category->delete();
 
             $this->dispatch('pg:eventRefresh-categoryTable');
 
-            session()->flash('success', 'Category deleted successfully!');
+            $this->dispatch('showAlert', [
+                'type' => 'success',
+                'message' => "Category '{$categoryName}' deleted successfully!"
+            ]);
+
+        } catch (\Exception $e) {
+            $this->dispatch('showAlert', [
+                'type' => 'error',
+                'message' => 'Error deleting category: ' . $e->getMessage()
+            ]);
         }
     }
 
@@ -114,12 +126,12 @@ final class CategoryTable extends PowerGridComponent
                 ->class('bg-zinc-500 text-white px-3 py-1 rounded text-sm font-medium hover:bg-zinc-600 transition hover:cursor-pointer')
                 ->dispatch('edit', ['rowId' => $row->id]),
 
-              Button::add('delete')
-                  ->slot('Delete')
-                  ->id()
-                  ->class('bg-red-500 text-white px-3 py-1 rounded text-sm font-medium hover:bg-red-600 transition hover:cursor-pointer')
-                  ->dispatch('delete', ['rowId' => $row->id])
-                  ->confirm('Are you sure you want to delete this category?')
+            Button::add('delete')
+                ->slot('Delete')
+                ->id()
+                ->class('bg-red-500 text-white px-3 py-1 rounded text-sm font-medium hover:bg-red-600 transition hover:cursor-pointer')
+                ->dispatch('delete', ['rowId' => $row->id])
+                ->confirm('Are you sure you want to delete this category?')
         ];
     }
 }
