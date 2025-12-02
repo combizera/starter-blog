@@ -12,3 +12,5 @@ Route::get('/', function () {
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::resource('/blog/categories', CategoryController::class)->except('show');
 Route::resource('/blog/posts', PostController::class)->except('show');
+Route::get('/blog/{category:slug}', [BlogController::class, 'category'])->name('blog.category');
+Route::get('/blog/{post:slug}', [BlogController::class, 'post'])->name('blog.category');

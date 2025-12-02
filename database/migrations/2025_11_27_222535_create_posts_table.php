@@ -27,6 +27,7 @@ return new class extends Migration
                 ->nullOnDelete();
             $table->string('title');
             $table->string('slug')->unique();
+            // TODO: add status, resume
             $table->text('thumbnail')->nullable();
             $table->text('content');
             $table->timestamps();

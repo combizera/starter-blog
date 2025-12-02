@@ -1,6 +1,9 @@
+@props([
+  'title' => null
+])
 <section class="pb-10">
   <h2 class="font-bold text-2xl mb-8 pt-10">
-    Latest Articles
+    {{ $title }}
   </h2>
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     <x-blog-post-card
