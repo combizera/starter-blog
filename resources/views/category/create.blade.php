@@ -13,6 +13,6 @@
   >
     @csrf
 
-    <livewire:form-category />
+    <livewire:form-category :is-editing="false" />
   </form>
 </x-layout-admin>

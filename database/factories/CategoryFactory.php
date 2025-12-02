@@ -20,6 +20,8 @@ class CategoryFactory extends Factory
         return [
             'name' => $name,
             'slug' => Str::slug($name),
+            'description' => $this->faker->optional()->text(),
+            'post_featured' => null,
         ];
     }
 }

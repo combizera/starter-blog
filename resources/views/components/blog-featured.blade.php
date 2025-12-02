@@ -34,7 +34,7 @@
             </div>
 
             <div>
-              <p class="text-gray-500 text-sm mb-1">Publication Date</p>
+              <p class="text-gray-500 text-sm mb-1">Date</p>
               <p class="text-white font-medium">October 10, 2023</p>
             </div>
 

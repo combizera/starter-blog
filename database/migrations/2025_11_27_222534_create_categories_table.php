@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // TODO: add description/post_featured
+            $table->text('description')->nullable();
+            $table->smallInteger('post_featured')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
         });

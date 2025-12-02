@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -44,7 +45,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category): View
     {
-        return view('category.edit', compact('category'));
+        $posts = $category->posts()
+            ->get(['id', 'title']);
+
+        return view('category.edit', compact('category', 'posts'));
     }
 
     /**

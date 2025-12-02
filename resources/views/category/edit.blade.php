@@ -13,42 +13,6 @@
     @csrf
     @method('PUT')
 
-    <x-section title="Category - {{ $category->name }}" icon="document-text">
-      <div class="flex">
-        <x-input
-          label="Name"
-          placeholder="Category Name"
-          name="name"
-          value="{{ $category->name }}"
-          required
-        />
-
-        @error('name')
-          <div class="text-red-600 mt-1">
-            {{ $message }}
-          </div>
-        @enderror
-      </div>
-
-      <div>
-        <x-input
-          label="Slug"
-          placeholder="category-slug"
-          name="slug"
-          value="{{ $category->slug }}"
-          required
-        />
-
-        @error('slug')
-          <div class="text-red-600 mt-1">
-            {{ $message }}
-          </div>
-        @enderror
-      </div>
-
-      <x-button class="col-span-2 w-full font-bold !text-zinc-400 !border-zinc-400" outline zinc lg flat type="submit">
-        Update Category
-      </x-button>
-    </x-section>
+    <livewire:form-category :category="$category" :posts="$posts" :is-editing="true" />
   </form>
 </x-layout-admin>
