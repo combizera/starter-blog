@@ -11,7 +11,15 @@ class BlogController extends Controller
 {
     public function index(): View
     {
-        return view('blog.index');
+        $posts = Post::published()
+            ->latest()
+            ->take(11)
+            ->get();
+
+        $featuredPost = $posts->shift();
+        $latestPosts = $posts;
+
+        return view('blog.index', compact('featuredPost', 'latestPosts'));
     }
 
     public function category(Category $category): View

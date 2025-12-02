@@ -6,6 +6,7 @@ use App\Enum\PostStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
@@ -35,5 +36,17 @@ class Post extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopePublished(Builder $query): void
+    {
+        $query->where('status', PostStatus::PUBLISH);
+    }
+
+    public function isPrivate(): bool
+    {
+        return now() < $this->published_at
+            || $this->status === PostStatus::PRIVATE
+            || $this->status === PostStatus::DRAFT;
     }
 }
