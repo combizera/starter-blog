@@ -1,6 +1,7 @@
 <section class="py-16 px-4">
   <div class="max-w-7xl mx-auto">
     <!-- Article Card -->
+    {{-- ARTICLE --}}
     <article class="flex flex-col md:flex-row gap-8 items-start">
       <!-- Image Container -->
       <div class="w-full md:w-[400px] flex-shrink-0">
@@ -13,9 +14,9 @@
         </div>
       </div>
 
-      <!-- Content Container -->
-      <div class="flex-1 flex flex-col justify-between">
-        <!-- Title and Description -->
+      {{-- CONTAINER --}}
+      <div class="flex-1 flex flex-col justify-between items-start">
+        {{-- TITLE --}}
         <div>
           <h2 class="text-3xl md:text-4xl font-bold mb-4">
             Global Climate Summit Addresses Urgent Climate Action
@@ -25,7 +26,7 @@
             World leaders gathered at the Global Climate Summit to discuss urgent climate action, emissions reductions, and renewable energy targets.
           </p>
 
-          <!-- Metadata -->
+          {{-- DATA --}}
           <div class="flex flex-wrap gap-x-8 gap-y-4 mb-8">
             <div>
               <p class="text-gray-500 text-sm mb-1">Category</p>
@@ -44,12 +45,10 @@
           </div>
         </div>
 
-        <!-- Footer -->
-        <div class="">
-          <a href="#" class="text-white hover:text-gray-300 transition-colors font-medium">
-            Read More
-          </a>
-        </div>
+        <x-btn.pri
+          title="Get Started"
+          link="#get-started"
+        />
       </div>
     </article>
   </div>
