@@ -38,6 +38,11 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getUrl(): string
+    {
+        return route('blog.post', ['post' => $this->slug]);
+    }
+
     public function scopePublished(Builder $query): void
     {
         $query->where('status', PostStatus::PUBLISH);

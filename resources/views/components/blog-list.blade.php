@@ -12,6 +12,7 @@
         :title="$post->title"
         :resume="$post->resume"
         :date="$post->created_at->format('F d, Y')"
+        :link="route('blog.post', $post->slug)"
       />
     @endforeach
   </ul>
