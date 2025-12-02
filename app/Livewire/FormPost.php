@@ -36,6 +36,6 @@ class FormPost extends Component
         $this->resume = $post->resume;
         $this->thumbnail = $post->thumbnail;
         $this->content = $post->content;
-        $this->status = $post->status;
+        $this->status = $post->status?->value;
     }
 }

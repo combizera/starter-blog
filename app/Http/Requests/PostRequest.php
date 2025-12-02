@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'user_id' => 'required|exists:users,id',
             'title' => 'required|max:255|string',
-            'slug' => 'required|max:255|string|unique:posts,slug' . $this->route('category')->id,
+            'slug' => 'required|max:255|string|unique:posts,slug',
             'resume' => 'nullable|string',
             'thumbnail' => 'nullable|image|max:2048',
             'content' => 'required|string',
