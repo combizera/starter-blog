@@ -25,9 +25,11 @@ class PostRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'user_id' => 'required|exists:users,id',
             'title' => 'required|max:255|string',
-            'slug' => 'required|max:255|string|unique:posts,slug',
+            'slug' => 'required|max:255|string|unique:posts,slug' . $this->route('category')->id,
+            'resume' => 'nullable|string',
             'thumbnail' => 'nullable|image|max:2048',
             'content' => 'required|string',
+            'status' => 'nullable|string',
         ];
     }
 
@@ -49,11 +51,15 @@ class PostRequest extends FormRequest
             'slug.string' => 'Slug must be a string.',
             'slug.unique' => 'Slug has already been taken.',
 
+            'resume.string' => 'Resume must be a string.',
+
             'thumbnail.image' => 'Thumbnail must be an image.',
             'thumbnail.max' => 'Thumbnail may not be greater than 2MB.',
 
             'content.required' => 'The Content is required.',
             'content.string' => 'The Content must be a string.',
+
+            'status.string' => 'The Status must be a string.'
         ];
     }
 }

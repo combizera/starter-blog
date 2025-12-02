@@ -34,6 +34,21 @@
   </div>
 
   <div class="col-span-2">
+    <div class="mb-4">
+      <x-textarea
+        label="Resume"
+        placeholder="Your post resume here..."
+        name="resume"
+        wire:model="resume"
+        rows="3"
+        required
+      />
+      @error('content')
+      <div class="text-red-600 mt-1">
+        {{ $message }}
+      </div>
+      @enderror
+    </div>
     <div>
       <x-textarea
         label="Content"
@@ -51,7 +66,7 @@
     </div>
   </div>
 
-  <x-section title="Identification" icon="identification" class="col-span-2">
+  <x-section title="Identification" icon="identification" class="col-span-2" :cols="3">
     <div>
       <x-select
         name="category_id"
@@ -80,6 +95,26 @@
         option-value="value"
       />
       @error('user_id')
+        <div class="text-red-600 mt-1">
+          {{ $message }}
+        </div>
+      @enderror
+    </div>
+
+    <div>
+      <x-select
+        name="status"
+        label="Select Status"
+        placeholder="Select Status"
+        wire:model="status"
+        :options="collect(\App\Enum\PostStatus::cases())->map(fn($status) => [
+        'label' => $status->getLabel(),
+        'value' => $status->value,
+    ])->toArray()"
+        option-label="label"
+        option-value="value"
+      />
+      @error('status')
         <div class="text-red-600 mt-1">
           {{ $message }}
         </div>

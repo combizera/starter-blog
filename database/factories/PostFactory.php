@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enum\PostStatus;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -26,9 +28,10 @@ class PostFactory extends Factory
             'user_id' => User::factory(),
             'title' => $this->faker->sentence(),
             'slug' => Str::slug($title),
-            // TODO: add library to get url thumbnails
+            'resume' => $this->faker->optional()->paragraph(),
             'thumbnail' => null,
             'content' => $this->faker->paragraphs(5, true),
+            'status' => $this->faker->randomElement([PostStatus::DRAFT, PostStatus::PRIVATE, PostStatus::PUBLISH]),
         ];
     }
 }

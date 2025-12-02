@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enum\PostStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,9 +17,14 @@ class Post extends Model
         'user_id',
         'title',
         'slug',
+        'resume',
         'thumbnail',
         'content',
-        // TODO: adicionar um is_published
+        'status',
+    ];
+
+    protected $casts = [
+        'status' => PostStatus::class,
     ];
 
     public function category(): BelongsTo

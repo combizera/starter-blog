@@ -14,8 +14,10 @@ class FormPost extends Component
     public ?int $userId = null;
     public ?string $title = null;
     public ?string $slug = null;
+    public ?string $resume = null;
     public ?string $thumbnail = null;
     public ?string $content = null;
+    public ?string $status = null;
     public ?Collection $categories = null;
     public ?Collection $users = null;
 
@@ -31,7 +33,9 @@ class FormPost extends Component
         $this->userId = $post->user_id;
         $this->title = $post->title;
         $this->slug = $post->slug;
+        $this->resume = $post->resume;
         $this->thumbnail = $post->thumbnail;
         $this->content = $post->content;
+        $this->status = $post->status;
     }
 }
