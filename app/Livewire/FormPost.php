@@ -10,15 +10,25 @@ use Livewire\Component;
 class FormPost extends Component
 {
     public ?string $button = 'Save Post';
+
     public ?int $categoryId = null;
+
     public ?int $userId = null;
+
     public ?string $title = null;
+
     public ?string $slug = null;
+
     public ?string $resume = null;
+
     public ?string $thumbnail = null;
+
     public ?string $content = null;
+
     public ?string $status = null;
+
     public ?Collection $categories = null;
+
     public ?Collection $users = null;
 
     public function render(): View

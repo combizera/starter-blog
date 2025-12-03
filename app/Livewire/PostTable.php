@@ -3,14 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\Post;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class PostTable extends PowerGridComponent
 {
@@ -37,7 +37,7 @@ final class PostTable extends PowerGridComponent
     {
         return [
             'category' => ['name'],
-            'user' => ['name'],
+            'user'     => ['name'],
         ];
     }
 
@@ -46,15 +46,15 @@ final class PostTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('category_id')
-            ->add('category_name', fn($post) => $post->category->name ?? 'N/A')
+            ->add('category_name', fn ($post) => $post->category->name ?? 'N/A')
             ->add('user_id')
-            ->add('user_name', fn($post) => $post->user->name ?? 'N/A')
-            ->add('title_preview', fn($post) => Str::limit($post->title, 20, '...'))
+            ->add('user_name', fn ($post) => $post->user->name ?? 'N/A')
+            ->add('title_preview', fn ($post) => Str::limit($post->title, 20, '...'))
             ->add('title')
             ->add('content')
-            ->add('content_preview', fn($post) => Str::limit($post->content, 50, '...'))
+            ->add('content_preview', fn ($post) => Str::limit($post->content, 50, '...'))
             ->add('created_at')
-            ->add('created_at_formatted', fn($post) => Carbon::parse($post->created_at)->format('d/m/Y'));
+            ->add('created_at_formatted', fn ($post) => Carbon::parse($post->created_at)->format('d/m/Y'));
     }
 
     public function columns(): array
@@ -81,7 +81,7 @@ final class PostTable extends PowerGridComponent
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
-            Column::action('Action')
+            Column::action('Action'),
         ];
     }
 
@@ -124,7 +124,7 @@ final class PostTable extends PowerGridComponent
                 ->id()
                 ->class('bg-red-500 text-white px-3 py-1 rounded text-sm font-medium hover:bg-red-600 transition hover:cursor-pointer')
                 ->dispatch('delete', ['rowId' => $row->id])
-                ->confirm('Are you sure you want to delete this category?')
+                ->confirm('Are you sure you want to delete this category?'),
         ];
     }
 }

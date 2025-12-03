@@ -17,14 +17,19 @@
         "wireui/wireui": "^2.5"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.16",
+        "captainhook/captainhook": "^5.27",
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.8",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "pestphp/pest": "^4.1",
-        "pestphp/pest-plugin-laravel": "^4.0"
+        "pestphp/pest-plugin-laravel": "^4.0",
+        "pestphp/pest-plugin-type-coverage": "^4.0",
+        "phpstan/phpstan": "^2.1"
     },
     "autoload": {
         "psr-4": {
@@ -35,7 +40,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "GitHooks\\": "githooks/"
         }
     },
     "scripts": {
@@ -70,8 +76,39 @@
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ],
+        "post-install-cmd": [
+            "@php -r \"file_exists('vendor/bin/captainhook') && shell_exec('./vendor/bin/captainhook install --only-enabled -f');\"",
+            "@php artisan storage:link"
+        ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "format": "./vendor/bin/pint",
+        "analyse": "./vendor/bin/phpstan",
+        "analyse:type": "./vendor/bin/pest --type-coverage",
+        "test:watch": [
+            "@php vendor/bin/pest --watch"
+        ],
+        "test:coverage": [
+            "@php vendor/bin/pest --coverage"
+        ],
+        "test:ci": [
+            "@php vendor/bin/pest --coverage --min=80 --colors=never"
+        ],
+        "test:unit": [
+            "@php vendor/bin/pest tests/Unit"
+        ],
+        "test:feature": [
+            "@php vendor/bin/pest tests/Feature"
+        ],
+        "check": [
+            "@composer validate",
+            "@test",
+            "@php vendor/bin/pint --test",
+            "@php vendor/bin/phpstan analyse"
+        ],
+        "fix": [
+            "@php vendor/bin/pint"
         ]
     },
     "extra": {
