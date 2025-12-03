@@ -1,0 +1,138 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
+use PowerComponents\LivewirePowerGrid\Button;
+use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
+
+final class CategoryTable extends PowerGridComponent
+{
+    public string $tableName = 'categoryTable';
+
+    public function setUp(): array
+    {
+        return [
+            PowerGrid::header()
+                ->showSearchInput(),
+
+            PowerGrid::footer()
+                ->showPerPage()
+                ->showRecordCount(),
+        ];
+    }
+
+    public function datasource(): Builder
+    {
+        return Category::query()
+            ->withCount('posts');
+    }
+
+    public function relationSearch(): array
+    {
+        return [];
+    }
+
+    public function fields(): PowerGridFields
+    {
+        return PowerGrid::fields()
+            ->add('id')
+            ->add('name')
+            ->add('slug')
+            ->add('posts_count')
+            ->add('created_at')
+            ->add('created_at_formatted', fn ($category) => Carbon::parse($category->created_at)->format('d/m/Y'));
+    }
+
+    public function columns(): array
+    {
+        return [
+            Column::make('Id', 'id'),
+
+            Column::make('Posts', 'posts_count')
+                ->sortable(),
+
+            Column::make('Name', 'name')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Slug', 'slug')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Created at', 'created_at_formatted', 'created_at')
+                ->sortable(),
+
+            Column::action('Action'),
+        ];
+    }
+
+    public function filters(): array
+    {
+        return [];
+    }
+
+    #[\Livewire\Attributes\On('edit')]
+    public function edit($rowId): void
+    {
+        $this->redirect(route('categories.edit', $rowId));
+    }
+
+    #[\Livewire\Attributes\On('delete')]
+    public function delete($rowId): void
+    {
+        try {
+            $category = Category::findOrFail($rowId);
+
+            if ($category->posts_count > 0) {
+                $this->dispatch('showAlert', [
+                    'type'    => 'error',
+                    'message' => "Cannot delete '{$category->name}'! It has {$category->posts_count} post(s) associated.",
+                ]);
+
+                return;
+            }
+
+            $categoryName = $category->name;
+            $category->delete();
+
+            $this->dispatch('pg:eventRefresh-categoryTable');
+
+            $this->dispatch('showAlert', [
+                'type'    => 'success',
+                'message' => "Category '{$categoryName}' deleted successfully!",
+            ]);
+
+        } catch (\Exception $e) {
+            $this->dispatch('showAlert', [
+                'type'    => 'error',
+                'message' => 'Error deleting category: ' . $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function actions(Category $row): array
+    {
+        // TODO: Criar action p/ ir p/ category
+
+        return [
+            Button::add('edit')
+                ->slot('Edit')
+                ->id()
+                ->class('bg-zinc-500 text-white px-3 py-1 rounded text-sm font-medium hover:bg-zinc-600 transition hover:cursor-pointer')
+                ->dispatch('edit', ['rowId' => $row->id]),
+
+            Button::add('delete')
+                ->slot('Delete')
+                ->id()
+                ->class('bg-red-500 text-white px-3 py-1 rounded text-sm font-medium hover:bg-red-600 transition hover:cursor-pointer')
+                ->dispatch('delete', ['rowId' => $row->id])
+                ->confirm('Are you sure you want to delete this category?'),
+        ];
+    }
+}

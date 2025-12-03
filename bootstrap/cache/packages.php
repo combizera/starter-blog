@@ -1,4 +1,15 @@
 <?php return array (
+  'barryvdh/laravel-debugbar' => 
+  array (
+    'aliases' => 
+    array (
+      'Debugbar' => 'Barryvdh\\Debugbar\\Facades\\Debugbar',
+    ),
+    'providers' => 
+    array (
+      0 => 'Barryvdh\\Debugbar\\ServiceProvider',
+    ),
+  ),
   'laravel/pail' => 
   array (
     'providers' => 
@@ -18,6 +29,17 @@
     'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'livewire/livewire' => 
+  array (
+    'aliases' => 
+    array (
+      'Livewire' => 'Livewire\\Livewire',
+    ),
+    'providers' => 
+    array (
+      0 => 'Livewire\\LivewireServiceProvider',
     ),
   ),
   'nesbot/carbon' => 
@@ -46,6 +68,30 @@
     'providers' => 
     array (
       0 => 'Pest\\Laravel\\PestServiceProvider',
+    ),
+  ),
+  'power-components/livewire-powergrid' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'PowerComponents\\LivewirePowerGrid\\Providers\\PowerGridServiceProvider',
+    ),
+  ),
+  'wireui/heroicons' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'WireUi\\Heroicons\\HeroiconsServiceProvider',
+    ),
+  ),
+  'wireui/wireui' => 
+  array (
+    'aliases' => 
+    array (
+    ),
+    'providers' => 
+    array (
+      0 => 'WireUi\\ServiceProvider',
     ),
   ),
 );

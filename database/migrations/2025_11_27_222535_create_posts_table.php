@@ -1,7 +1,7 @@
 <?php
 
-    use App\Models\Category;
-    use app\Models\User;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -27,8 +27,10 @@ return new class extends Migration
                 ->nullOnDelete();
             $table->string('title');
             $table->string('slug')->unique();
+            $table->text('resume')->nullable();
             $table->text('thumbnail')->nullable();
             $table->text('content');
+            $table->string('status', 50)->default(0);
             $table->timestamps();
         });
     }
