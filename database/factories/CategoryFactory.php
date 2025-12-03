@@ -18,9 +18,9 @@ class CategoryFactory extends Factory
         $name = $this->faker->unique()->word();
 
         return [
-            'name' => $name,
-            'slug' => Str::slug($name),
-            'description' => $this->faker->optional()->text(),
+            'name'          => $name,
+            'slug'          => Str::slug($name),
+            'description'   => $this->faker->optional()->text(),
             'post_featured' => null,
         ];
     }

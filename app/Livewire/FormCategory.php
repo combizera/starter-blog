@@ -10,11 +10,17 @@ use Livewire\Component;
 class FormCategory extends Component
 {
     public ?string $button = 'Save Category';
+
     public ?string $name = null;
+
     public ?string $slug = null;
+
     public ?string $description = null;
+
     public ?int $postFeatured = null;
+
     public ?bool $isEditing = false;
+
     public ?Collection $posts = null;
 
     public function render(): View

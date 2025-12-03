@@ -3,13 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Category;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 
 final class CategoryTable extends PowerGridComponent
 {
@@ -46,7 +46,7 @@ final class CategoryTable extends PowerGridComponent
             ->add('slug')
             ->add('posts_count')
             ->add('created_at')
-            ->add('created_at_formatted', fn($category) => Carbon::parse($category->created_at)->format('d/m/Y'));
+            ->add('created_at_formatted', fn ($category) => Carbon::parse($category->created_at)->format('d/m/Y'));
     }
 
     public function columns(): array
@@ -68,7 +68,7 @@ final class CategoryTable extends PowerGridComponent
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
-            Column::action('Action')
+            Column::action('Action'),
         ];
     }
 
@@ -91,9 +91,10 @@ final class CategoryTable extends PowerGridComponent
 
             if ($category->posts_count > 0) {
                 $this->dispatch('showAlert', [
-                    'type' => 'error',
-                    'message' => "Cannot delete '{$category->name}'! It has {$category->posts_count} post(s) associated."
+                    'type'    => 'error',
+                    'message' => "Cannot delete '{$category->name}'! It has {$category->posts_count} post(s) associated.",
                 ]);
+
                 return;
             }
 
@@ -103,14 +104,14 @@ final class CategoryTable extends PowerGridComponent
             $this->dispatch('pg:eventRefresh-categoryTable');
 
             $this->dispatch('showAlert', [
-                'type' => 'success',
-                'message' => "Category '{$categoryName}' deleted successfully!"
+                'type'    => 'success',
+                'message' => "Category '{$categoryName}' deleted successfully!",
             ]);
 
         } catch (\Exception $e) {
             $this->dispatch('showAlert', [
-                'type' => 'error',
-                'message' => 'Error deleting category: ' . $e->getMessage()
+                'type'    => 'error',
+                'message' => 'Error deleting category: ' . $e->getMessage(),
             ]);
         }
     }
@@ -131,7 +132,7 @@ final class CategoryTable extends PowerGridComponent
                 ->id()
                 ->class('bg-red-500 text-white px-3 py-1 rounded text-sm font-medium hover:bg-red-600 transition hover:cursor-pointer')
                 ->dispatch('delete', ['rowId' => $row->id])
-                ->confirm('Are you sure you want to delete this category?')
+                ->confirm('Are you sure you want to delete this category?'),
         ];
     }
 }
