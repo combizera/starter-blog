@@ -12,7 +12,6 @@
         "actions": [
             {
                 "action": "\\GitHooks\\Pint"
-
             },
             {
                 "action": "\\GitHooks\\PHPStan"

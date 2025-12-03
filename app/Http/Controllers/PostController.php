@@ -62,7 +62,7 @@ class PostController extends Controller
     {
         $categories = Category::query()
             ->get()
-            ->map(fn (Category$category) => [
+            ->map(fn (Category $category) => [
                 'label' => $category->name,
                 'value' => $category->id,
             ]);
