@@ -11,13 +11,22 @@
         "enabled": true,
         "actions": [
             {
-                "action": "\\GitHooks\\Pint"
+                "action": "\\GitHooks\\Pint",
+                "options": {
+                    "label": "🛠️ Running Pint"
+                }
             },
             {
-                "action": "\\GitHooks\\PHPStan"
+                "action": "\\GitHooks\\PHPStan",
+                "options": {
+                    "label": "🔍 Running PHPStan"
+                }
             },
             {
-                "action": "composer test"
+                "action": "composer test",
+                "options": {
+                    "label": "🧪 Running Pest"
+                }
             }
         ]
     },
