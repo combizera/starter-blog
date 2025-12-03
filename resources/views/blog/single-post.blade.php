@@ -80,7 +80,7 @@
         </div>
 
         {{-- Right Column: Sidebar --}}
-        <div class="lg:col-span-4 space-y-12 sticky top-5 h-fit"">
+        <div class="lg:col-span-4 space-y-12 sticky top-5 h-fit">
 
         {{-- Metadata Grid --}}
         <div class="grid grid-cols-2 gap-y-8 gap-x-4">
